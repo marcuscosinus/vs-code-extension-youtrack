@@ -293,6 +293,7 @@
     "ts-loader": "^6.0.4",
     "tslint": "^5.12.1",
     "typescript": "^4.0.2",
+    "vscode": "^1.1.37",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
