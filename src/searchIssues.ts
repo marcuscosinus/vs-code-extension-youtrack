@@ -27,7 +27,8 @@ export class searchIssuesProvider implements vscode.TreeDataProvider<TreeItem> {
   }
 
   async getData(): Promise<Array<TreeItem>> {
-    const youtrackPinIssueId = this.context.globalState.get('youtrackPinIssueId') as string;
+    const youtrackPinIssue = this.context.globalState.get('youtrackPinIssue') as any;
+    const youtrackPinIssueId = youtrackPinIssue?.id || undefined;
     const searchIssuesGroupByStatus = vscode.workspace
       .getConfiguration('youtrack')
       .get('searchIssuesGroupByStatus') as boolean;
@@ -63,6 +64,7 @@ export class searchIssuesProvider implements vscode.TreeDataProvider<TreeItem> {
               issue.reporter.fullName,
               moment(issue.created).format('DD MMM YYYY'),
               vscode.TreeItemCollapsibleState.None,
+              issue.project,
               issue.resolved,
               {
                 command: 'youtrack.viewIssue',
@@ -99,6 +101,7 @@ export class searchIssuesProvider implements vscode.TreeDataProvider<TreeItem> {
             issue.reporter.fullName,
             moment(issue.created).format('DD MMM YYYY'),
             vscode.TreeItemCollapsibleState.None,
+            issue.project,
             issue.resolved,
             {
               command: 'youtrack.viewIssue',
@@ -138,6 +141,7 @@ class TreeItem extends Issue {
       issue.createdBy,
       issue.createdOn,
       children === undefined ? vscode.TreeItemCollapsibleState.None : vscode.TreeItemCollapsibleState.Expanded,
+      issue.project,
       issue.resolved,
       issue.command,
       issue.youtrackPinIssueId

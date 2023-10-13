@@ -29,7 +29,8 @@ export class currentIssuesProvider implements vscode.TreeDataProvider<Issue> {
    * Fetch current YouTrack issues
    */
   async getChildren(element?: Issue): Promise<Issue[]> | null {
-    const youtrackPinIssueId = this.context.globalState.get('youtrackPinIssueId') as string;
+    const youtrackPinIssue = this.context.globalState.get('youtrackPinIssue') as any;
+    const youtrackPinIssueId = youtrackPinIssue?.id || undefined;
     const issues = await searchIssues(this.context);
 
     const issuesResponse = issues.map((issue) => {
@@ -40,6 +41,7 @@ export class currentIssuesProvider implements vscode.TreeDataProvider<Issue> {
         issue.reporter.fullName,
         moment(issue.created).format('DD MMM YYYY'),
         vscode.TreeItemCollapsibleState.None,
+        issue.project,
         issue.resolved,
         {
           command: 'youtrack.viewIssue',

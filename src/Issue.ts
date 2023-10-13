@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import { IssueProject } from './data/model';
 
 export class Issue extends vscode.TreeItem {
   constructor(
@@ -9,6 +10,7 @@ export class Issue extends vscode.TreeItem {
     public readonly createdBy: string,
     public readonly createdOn: string,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+    public readonly project: IssueProject,
     public readonly resolved?: string,
     public readonly command?: vscode.Command,
     public readonly youtrackPinIssueId?: string

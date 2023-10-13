@@ -1,8 +1,11 @@
+import { IssueProject } from "./model";
+
 export interface SearchIssue {
   idReadable: string;
   resolved?: any;
   summary: string;
   reporter: Reporter;
+  project: IssueProject;
   customFields: CustomField[];
   created: any;
   $type: string;
@@ -25,6 +28,7 @@ export interface IssueTransformed {
   status: string;
   ordinal: number;
   idReadable: string;
+  project: IssueProject;
   resolved?: any;
   summary: string;
   reporter: Reporter;

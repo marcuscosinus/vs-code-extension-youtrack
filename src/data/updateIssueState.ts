@@ -30,7 +30,7 @@ export const updateIssueState = async (issueId: string) => {
   // Fetch issue details to get project id.
   const issue: IssueProject = await axios
     .get(
-      `${host}api/issues/${issueId}?fields=idReadable,summary,project(shortName,name),customFields(id,fieldType,value(id,name))`,
+      `${host}api/issues/${issueId}?fields=idReadable,summary,project(id,shortName,name),customFields(id,fieldType,value(id,name))`,
       config
     )
     .then((response) => {

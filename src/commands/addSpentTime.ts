@@ -9,6 +9,6 @@ import { Issue } from '../Issue';
  */
 export const addSpentTimeCommand = (context: vscode.ExtensionContext) => {
   vscode.commands.registerCommand('youtrack.addTime', (node: Issue) => {
-    addSpentTime(context, node.id);
+    addSpentTime(context, node);
   });
 };

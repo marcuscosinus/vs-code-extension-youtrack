@@ -64,9 +64,10 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(pinnedIssueStatusBar);
 
   // Check If Global State Already Has a Pinned Issue
-  if (context.globalState.get('youtrackPinIssueId')) {
+  if (context.globalState.get('youtrackPinIssue')) {
     // Get Pinned Issue to Global Storage
-    const id = context.globalState.get('youtrackPinIssueId') as string;
+    const issue = context.globalState.get('youtrackPinIssue') as any;
+    const id = issue.id;
     const summary = context.globalState.get('youtrackPinIssueSummary') as string;
     // Update Status Bar With Issue
     updateStatusBarItem(id, summary);

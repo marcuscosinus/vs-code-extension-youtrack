@@ -10,7 +10,7 @@ import { Issue } from '../Issue';
 export const pinIssueCommand = (context: vscode.ExtensionContext) => {
   vscode.commands.registerCommand('youtrack.pin', async (node: Issue) => {
     // Set Pinned Issue to Global Storage
-    context.globalState.update('youtrackPinIssueId', node.id);
+    context.globalState.update('youtrackPinIssue', node);
     context.globalState.update('youtrackPinIssueSummary', node.summary);
     // Update Status Bar With Issue
     await updateStatusBarItem(node.id, node.summary);
@@ -28,7 +28,7 @@ export const pinIssueCommand = (context: vscode.ExtensionContext) => {
 export const unpinIssueCommand = (context: vscode.ExtensionContext) => {
   vscode.commands.registerCommand('youtrack.unpin', async (node: Issue) => {
     // Clear Pinned Issue From Global Storage
-    context.globalState.update('youtrackPinIssueId', '');
+    context.globalState.update('youtrackPinIssue', '');
     context.globalState.update('youtrackPinIssueSummary', '');
     // Clear Status Bar
     await updateStatusBarItem();

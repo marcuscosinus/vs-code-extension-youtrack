@@ -38,7 +38,7 @@ export async function searchIssues(
 
   const issues: Array<SearchIssue> = await axios
     .get(
-      `${host}api/issues?fields=idReadable,summary,resolved,reporter(login,fullName),created,customFields(name,id,fieldType,value(id,name,login,fullName,ordinal))&$top=${responseCountToFetch}&query=${searchQuery}`,
+      `${host}api/issues?fields=idReadable,project(id),summary,resolved,reporter(login,fullName),created,customFields(name,id,fieldType,value(id,name,login,fullName,ordinal))&$top=${responseCountToFetch}&query=${searchQuery}`,
       config
     )
     .then((response) => {

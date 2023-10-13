@@ -1,4 +1,5 @@
 export interface Project {
+  id: string;
   shortName: string;
   name: string;
   $type: string;
@@ -11,6 +12,7 @@ export interface CustomField {
 }
 
 export interface IssueProject {
+  id: string,
   project: Project;
   idReadable: string;
   summary: string;
